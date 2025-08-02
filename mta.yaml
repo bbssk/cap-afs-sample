@@ -40,9 +40,22 @@ modules:
     type: com.sap.application.content
     path: gen
     requires:
-      - name: cap-afs-sample-html5-repo-host
+      #- name: cap-afs-sample-html5-repo-host
+      #  parameters:
+      #    content-target: true
+      - name: cap-afs-sample-auth
+      - name: cap-afs-sample-afs  
         parameters:
-          content-target: true
+          content-target: true  
+      - name: srv-api
+    parameters:
+      config:
+        destinations:
+        - name: ui5
+          url: https://ui5.sap.com
+        - name: srv-api
+          url: ~{srv-api/srv-url}
+          forwardAuthToken: true
     build-parameters:
       build-result: app/
       requires:
@@ -79,8 +92,13 @@ resources:
       service: hana
       service-plan: hdi-shared
 
-  - name: cap-afs-sample-html5-repo-host
+  #- name: cap-afs-sample-html5-repo-host
+  #  type: org.cloudfoundry.managed-service
+  #  parameters:
+  #    service: html5-apps-repo
+  #    service-plan: app-host
+  - name: cap-afs-sample-afs
     type: org.cloudfoundry.managed-service
     parameters:
-      service: html5-apps-repo
-      service-plan: app-host
+      service: app-front
+      service-plan: developer
