@@ -31,7 +31,8 @@
       "[production]": {
         "auth": "xsuaa",
         "db": "hana"
-      }
+      },
+      "html5-runtime": true
     }
   }
 }
