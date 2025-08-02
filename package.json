@@ -7,7 +7,9 @@
   "private": true,
   "dependencies": {
     "@sap/cds": "^9",
-    "express": "^4"
+    "express": "^4",
+    "@sap/xssec": "^4",
+    "@cap-js/hana": "^2"
   },
   "engines": {
     "node": ">=20"
@@ -22,5 +24,13 @@
   },
   "sapux": [
     "app/managebooks"
-  ]
+  ],
+  "cds": {
+    "requires": {
+      "[production]": {
+        "auth": "xsuaa",
+        "db": "hana"
+      }
+    }
+  }
 }
